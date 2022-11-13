@@ -60,7 +60,7 @@ interface JWTAuthAuthProviderProps {
 const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
   children,
 }) => {
-  const [firebaseData, setJWTAuthData] = useState<JWTAuthContextProps>({
+  const [JWTAuthData, setJWTAuthData] = useState<JWTAuthContextProps>({
     user: null,
     isAuthenticated: false,
     isLoading: true,
@@ -116,15 +116,17 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
       setAuthToken(accessToken);
       const res = await AzureAdService.getUserDetails(accessToken);
       setJWTAuthData({
-        user: res.data,
+        user: {
+          ...res,
+          photoURL: await AzureAdService.getUserPhoto(accessToken)
+        },
         isAuthenticated: true,
         isLoading: false,
       });
-
       dispatch(fetchSuccess());
     } catch (error) {
       setJWTAuthData({
-        ...firebaseData,
+        ...JWTAuthData,
         isAuthenticated: false,
         isLoading: false,
       });
@@ -155,7 +157,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
       dispatch(fetchSuccess());
     } catch (error) {
       setJWTAuthData({
-        ...firebaseData,
+        ...JWTAuthData,
         isAuthenticated: false,
         isLoading: false,
       });
@@ -176,7 +178,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
   return (
     <JWTAuthContext.Provider
       value={{
-        ...firebaseData,
+        ...JWTAuthData,
       }}
     >
       <JWTAuthActionsContext.Provider

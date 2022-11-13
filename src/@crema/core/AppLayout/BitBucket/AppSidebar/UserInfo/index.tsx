@@ -27,8 +27,8 @@ const UserInfo = () => {
     if (user.displayName) {
       return user.displayName.charAt(0).toUpperCase();
     }
-    if (user.email) {
-      return user.email.charAt(0).toUpperCase();
+    if (user.mail) {
+      return user.mail.charAt(0).toUpperCase();
     }
   };
 
@@ -122,7 +122,7 @@ const UserInfo = () => {
               }}
               component="span"
             >
-              {user.displayName ? user.displayName : "Admin User "}
+              {user.displayName ? user.displayName : "+Admin User "}
             </Box>
             <Box
               sx={{

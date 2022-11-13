@@ -13,7 +13,7 @@ export class AzureAdService {
       storeAuthStateInCookie: true,
     },
   });
-  static scopes: string[] = ["user.read"];
+  static scopes: string[] = ["user.read", "email", "openid", "profile"];
 
   static async getAccessToken() : Promise<string> {
     try {
@@ -41,7 +41,7 @@ export class AzureAdService {
     }
   }
 
-  private static getAuthenticatedClient(accessToken: string) {
+  static getAuthenticatedClient(accessToken: string) : any {
     return graph.Client.init({
       authProvider: (done: any) => {
         done(null, accessToken);
@@ -49,9 +49,16 @@ export class AzureAdService {
     });
   }
 
-  public static async getUserDetails(accessToken: string) {
+  static async getUserDetails(accessToken: string) {
     const client = this.getAuthenticatedClient(accessToken);
 
     return await client.api("/me").get();
+  }
+
+  static async getUserPhoto(accessToken: string) {
+    const client = this.getAuthenticatedClient(accessToken);
+    const blob = await client.api("/me/photo/$value").get();
+
+    return URL.createObjectURL(blob);
   }
 }

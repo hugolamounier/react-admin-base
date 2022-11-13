@@ -31,8 +31,8 @@ const SidebarUserInfo = () => {
     if (user.displayName) {
       return user.displayName.charAt(0).toUpperCase();
     }
-    if (user.email) {
-      return user.email.charAt(0).toUpperCase();
+    if (user.mail) {
+      return user.mail.charAt(0).toUpperCase();
     }
   };
 
@@ -121,7 +121,7 @@ const SidebarUserInfo = () => {
             fontSize: 14,
           }}
         >
-          {user.email ? user.email : "demo@crema-react.com "}
+          {user.mail ? user.mail : "demo@crema-react.com "}
         </Typography>
       </Box>
       <Menu

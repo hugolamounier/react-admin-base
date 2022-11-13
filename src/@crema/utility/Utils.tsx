@@ -100,7 +100,7 @@ export const getUserFromAuth0 = (user: any) => {
       id: 1,
       uid: user.sub,
       displayName: user.name,
-      email: user.email,
+      email: user.mail,
       photoURL: user.picture,
       role: authRole.user,
     };
@@ -114,7 +114,7 @@ export const getUserFromFirebase = (user: any) => {
       id: 1,
       uid: user.uid,
       displayName: user.displayName ? user.displayName : "Crema User",
-      email: user.email,
+      email: user.mail,
       photoURL: user.photoURL,
       role: authRole.user,
     };
@@ -139,7 +139,7 @@ export const getUserFromJwtAuth = (user: any) => {
       id: 1,
       uid: user._id,
       displayName: user.name,
-      email: user.email,
+      email: user.mail,
       photoURL: user.avatar,
       role: authRole.user,
     };

@@ -9,13 +9,4 @@ export enum RoutePermittedRole {
   Admin = "admin",
   User = "user",
 }
-
-export const defaultUser: AuthUser = {
-  uid: "john-alex",
-  displayName: "John Alex",
-  email: "demo@example.com",
-  token: "access-token",
-  role: "user",
-  photoURL: "/assets/images/avatar/A11.jpg",
-};
 export const initialUrl = "/sample/page-1"; // this url will open after login

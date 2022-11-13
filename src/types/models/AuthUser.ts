@@ -1,9 +1,7 @@
 export interface AuthUser {
   id?: number;
-  uid?: string;
   displayName?: string;
-  email?: string;
+  mail?: string;
+  role?: string[];
   photoURL?: string;
-  token?: string;
-  role?: string[] | string;
 }
